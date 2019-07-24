@@ -1,6 +1,6 @@
 {
   "host": "localhost",
-  "port": 3030,
+  "port": "PORT",
   "public": "../public/",
   "paginate": {
     "default": 10,
@@ -62,17 +62,22 @@
       "passwordField": "password"
     },
     "cognito": {
+      "authorizationURL": "COGNITO_AUTH_URL",
+      "callbackURL": "http://localhost:3030/auth/cognito/callback",
       "clientID": "COGNITO_CLIENTID",
       "clientSecret": "COGNITO_CLIENT_SECRET",
-      "clientDomain": "COGNITO_DOMAIN",
-      "callbackURL": "COGNITO_CALLBACK_URL",
-      "successRedirect": "COGNITO_SUCCESS_REDIRECT",
-      "region": "COGNITO_REGION"
+      "tokenURL": "COGNITO_TOKEN_URL",
+      "userProfileURL": "COGNITO_USER_URL",
+      "scope": [
+        "openid",
+        "profile",
+        "email"
+      ],
+      "successRedirect": "http://localhost:3030/"
     }
   },
   "mongodb": "mongodb://localhost:27017/feathers-cognito",
   "sync": {
     "uri": "redis://localhost:6379"
-  },
-  "arcgisServer": "http://arcgisserver.web.saf.sg/arcgis/rest/services/NDP19/"
+  }
 }

@@ -41,6 +41,7 @@
     "*.{js,ts}": "eslint"
   },
   "scripts": {
+    "heroku-postbuild": "tsc -p .",
     "coverage": "nyc --extension .ts npm run mocha",
     "test": "npm run eslint && npm run mocha",
     "test:all": "npm run eslint && cross-env NODE_ENV=test npm run mocha",
