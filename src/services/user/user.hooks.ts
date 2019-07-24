@@ -5,19 +5,19 @@ import { hooks as authHooks } from '@feathersjs/authentication';
 import { hooks as localAuthHooks } from '@feathersjs/authentication-local';
 
 // !code: imports
-import * as commonHooks from 'feathers-hooks-common';
+// import * as commonHooks from 'feathers-hooks-common';
 import currentUser from './hooks/current-user';
 import setupNewUser from './hooks/setupNewUser';
-import filterUserList from './hooks/filterUserList';
-import userResolvers from './userResolvers';
+// import filterUserList from './hooks/filterUserList';
+// import userResolvers from './userResolvers';
 // !end
 
 // !code: used
 const { hashPassword, protect } = localAuthHooks;
 const { authenticate } = authHooks;
-const {
-  fastJoin, iff, isProvider,
-} = commonHooks;
+// const {
+//   fastJoin, iff, isProvider,
+// } = commonHooks;
 // !end
 
 // !code: init // !end
@@ -38,11 +38,11 @@ const moduleExports: HooksObject = {
   after: {
     // !code: after
     all: [protect('password')],
-    find: [filterUserList, iff(isProvider('external'), fastJoin(userResolvers))],
+    find: [/* iff(isProvider('external'), fastJoin(userResolvers)) */],
     get: [],
     create: [],
     update: [],
-    patch: [iff(isProvider('external'), fastJoin(userResolvers))],
+    patch: [/* iff(isProvider('external'), fastJoin(userResolvers)) */],
     remove: [],
     // !end
   },

@@ -19,7 +19,6 @@ const server = app.listen(port);
 process.on('unhandledRejection', (reason, p) => {
   // !<DEFAULT> code: unhandled_rejection_log
   logger.error('Unhandled Rejection at: Promise ', p, reason);
-  console.log(reason);
   // !end
   // !code: unhandled_rejection // !end
 });
@@ -29,6 +28,7 @@ server.on('listening', async () => {
   logger.info('Feathers application started on http://%s:%d', app.get('host'), port);
   // !end
   await app.get('sequelizeClient');
+  logger.info('Database connected');
   // !code: listening // !end
   // !code: listening1 // !end
 });
