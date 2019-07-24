@@ -8,7 +8,6 @@ import user from './user/user.service';
 // !end
 // !code: init // !end
 
-// tslint:disable-next-line:no-unused-variable
 const moduleExports = function (app: App) {
   app.configure(role);
   app.configure(user);

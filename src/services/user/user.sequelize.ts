@@ -2,9 +2,7 @@
 /* tslint:disable:quotemark */
 // Defines Sequelize model for service `user`. (Can be re-generated.)
 import merge from 'lodash.merge';
-import Sequelize, { DefineAttributes } from 'sequelize';
-// tslint:disable-next-line:no-unused-variable
-const DataTypes = (Sequelize as any).DataTypes as Sequelize.DataTypes;
+import { DataTypes } from 'sequelize';
 // !code: imports // !end
 // !code: init // !end
 
@@ -31,7 +29,7 @@ const moduleExports = merge(
     roleIds: {
       type: DataTypes.JSONB,
     },
-  } as DefineAttributes,
+  },
   // !end
   // !code: moduleExports // !end
 );

@@ -2,25 +2,24 @@
 /* tslint:disable:quotemark */
 // Defines Sequelize model for service `role`. (Can be re-generated.)
 import merge from 'lodash.merge';
-import Sequelize, { DefineAttributes } from 'sequelize';
-// tslint:disable-next-line:no-unused-variable
-const DataTypes = (Sequelize as any).DataTypes as Sequelize.DataTypes;
+import { DataTypes } from 'sequelize';
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = merge({},
+const moduleExports = merge(
+  {},
   // !<DEFAULT> code: sequelize_model
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
-  } as DefineAttributes,
+      allowNull: false,
+    },
+  },
   // !end
   // !code: moduleExports // !end
 );

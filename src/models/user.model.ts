@@ -33,11 +33,9 @@ const moduleExports = function (app: App) {
       },
       // !end
       // !code: sequelize_define // !end
-    )
-  );
+    ));
 
-  // tslint:disable-next-line:no-unused-variable
-  user.associate = function (models) {
+  (user as any).associate = function (/* models: any */) {
     // Define associations here for foreign keys
     //   - No foreign keys defined.
     // See http://docs.sequelizejs.com/en/latest/docs/associations/

@@ -1,10 +1,9 @@
 
 // sequelize.ts - Sequelize adapter (other than SQL server)
-import Sequelize from 'sequelize';
+import { Sequelize, Op } from 'sequelize';
 import merge from 'lodash.merge';
 import { App } from './app.interface';
 
-const { Op } = Sequelize;
 // !code: imports // !end
 // !code: init // !end
 
@@ -63,6 +62,7 @@ export default function (app: App) {
 
   app.set('sequelizeClient', sequelize);
 
+  // eslint-disable-next-line no-param-reassign
   app.setup = function (...args: any[]) {
     const result = oldSetup.call(this, ...args);
     // !code: func_init // !end
@@ -71,7 +71,7 @@ export default function (app: App) {
     const { models } = sequelize;
     Object.keys(models).forEach((name) => {
       if ('associate' in models[name]) {
-        models[name].associate!(models);
+        (models[name] as any).associate(models);
       }
     });
 

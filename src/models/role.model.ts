@@ -1,19 +1,19 @@
+import merge from 'lodash.merge';
+import { Sequelize } from 'sequelize';
 
 // role-model.ts - A Sequelize model. (Can be re-generated.)
 import { App } from '../app.interface';
 //
 // See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
-import { Sequelize } from 'sequelize';
-import merge from 'lodash.merge';
 // !<DEFAULT> code: sequelize_schema
 import sequelizeSchema from '../services/role/role.sequelize';
 // !end
 // !code: sequelize_imports // !end
 // !code: sequelize_init // !end
 
-let moduleExports = function (app: App) {
-  let sequelizeClient = app.get('sequelizeClient') as Sequelize;
+const moduleExports = function (app: App) {
+  const sequelizeClient = app.get('sequelizeClient') as Sequelize;
   // !code: sequelize_func_init // !end
 
   const role = sequelizeClient.define('role',
@@ -25,17 +25,16 @@ let moduleExports = function (app: App) {
       {
         hooks: {
           beforeCount(options: any) {
+            // eslint-disable-next-line no-param-reassign
             options.raw = true;
           },
         } as any,
       },
       // !end
       // !code: sequelize_define // !end
-    )
-  );
+    ));
 
-  // tslint:disable-next-line:no-unused-variable
-  role.associate = function (models) {
+  (role as any).associate = function (/* models: any */) {
     // Define associations here for foreign keys
     //   - No foreign keys defined.
     // See http://docs.sequelizejs.com/en/latest/docs/associations/
