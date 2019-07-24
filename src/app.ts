@@ -22,7 +22,7 @@ import services from './services';
 import appHooks from './app.hooks';
 import channels from './channels';
 import authentication from './authentication';
-import mongoose from './mongoose';
+import sequelize from './sequelize';
 // tslint:disable-next-line
 // const generatorSpecs = require('../feathers-gen-specs.json');
 // !code: imports // !end
@@ -90,7 +90,7 @@ app.configure(socketio(
   // !end
 ));
 // Configure database adapters
-app.configure(mongoose);
+app.configure(sequelize);
 
 // Configure other middleware (see `middleware/index.ts`)
 app.configure(middleware);

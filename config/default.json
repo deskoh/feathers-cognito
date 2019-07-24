@@ -1,6 +1,6 @@
 {
   "host": "localhost",
-  "port": "PORT",
+  "port": "3030",
   "public": "../public/",
   "paginate": {
     "default": 10,
@@ -79,5 +79,12 @@
   "mongodb": "mongodb://localhost:27017/feathers-cognito",
   "sync": {
     "uri": "redis://localhost:6379"
+  },
+  "postgres": {
+    "username": "user",
+    "password": "pass",
+    "database": "feathers",
+    "host": "localhost",
+    "port": 5432
   }
 }

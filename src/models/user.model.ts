@@ -1,33 +1,56 @@
 
-// user-model.ts - A Mongoose model for a user entity
-import { App } from '../app.interface';
+// user-model.ts - A Sequelize model for user entity. (Can be re-generated.)
+import merge from 'lodash.merge';
+import { Sequelize } from 'sequelize';
+
+import { App } from '@/app.interface';
 //
-// See http://mongoosejs.com/docs/models.html
+// See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
-// !<DEFAULT> code: mongoose_schema
-import mongooseSchema from '../services/user/user.mongoose';
+// !<DEFAULT> code: sequelize_schema
+import sequelizeSchema from '../services/user/user.sequelize';
 // !end
-// !code: mongoose_imports // !end
-// !code: mongoose_init // !end
+// !code: sequelize_imports // !end
+// !code: sequelize_init // !end
 
 const moduleExports = function (app: App) {
-  const mongooseClient = app.get('mongooseClient');
-  // !code: mongoose_func_init // !end
+  const sequelizeClient = app.get('sequelizeClient') as Sequelize;
+  // !code: sequelize_func_init // !end
 
-  // !code: mongoose_client
-  const user = new mongooseClient.Schema(mongooseSchema, { timestamps: true });
-  // !end
+  const user = sequelizeClient.define('user',
+    // !<DEFAULT> code: sequelize_model
+    sequelizeSchema,
+    // !end
+    merge(
+      // !<DEFAULT> code: sequelize_options
+      {
+        hooks: {
+          beforeCount(options: any) {
+            // eslint-disable-next-line no-param-reassign
+            options.raw = true;
+          },
+        } as any,
+      },
+      // !end
+      // !code: sequelize_define // !end
+    )
+  );
 
-  const existingModel = mongooseClient.models.user; // needed for client/server tests
-  const returns = existingModel || mongooseClient.model('user', user);
+  // tslint:disable-next-line:no-unused-variable
+  user.associate = function (models) {
+    // Define associations here for foreign keys
+    //   - No foreign keys defined.
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    // !code: sequelize_associations // !end
+  };
 
-  // !code: mongoose_func_return // !end
-  return returns;
+  // !code: sequelize_func_return // !end
+  return user;
 };
-// !code: mongoose_more // !end
+// !code: sequelize_more // !end
 
-// !code: mongoose_exports // !end
+// !code: sequelize_exports // !end
 export default moduleExports;
 
-// !code: mongoose_funcs // !end
-// !code: mongoose_end // !end
+// !code: sequelize_funcs // !end
+// !code: sequelize_end // !end

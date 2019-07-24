@@ -1,33 +1,54 @@
 
-// role-model.ts - A Mongoose model
+// role-model.ts - A Sequelize model. (Can be re-generated.)
 import { App } from '../app.interface';
 //
-// See http://mongoosejs.com/docs/models.html
+// See http://docs.sequelizejs.com/en/latest/docs/models-definition/
 // for more of what you can do here.
-// !<DEFAULT> code: mongoose_schema
-import mongooseSchema from '../services/role/role.mongoose';
+import { Sequelize } from 'sequelize';
+import merge from 'lodash.merge';
+// !<DEFAULT> code: sequelize_schema
+import sequelizeSchema from '../services/role/role.sequelize';
 // !end
-// !code: mongoose_imports // !end
-// !code: mongoose_init // !end
+// !code: sequelize_imports // !end
+// !code: sequelize_init // !end
 
-const moduleExports = function (app: App) {
-  const mongooseClient = app.get('mongooseClient');
-  // !code: mongoose_func_init // !end
+let moduleExports = function (app: App) {
+  let sequelizeClient = app.get('sequelizeClient') as Sequelize;
+  // !code: sequelize_func_init // !end
 
-  // !<DEFAULT> code: mongoose_client
-  const role = new mongooseClient.Schema(mongooseSchema, { timestamps: true });
-  // !end
+  const role = sequelizeClient.define('role',
+    // !<DEFAULT> code: sequelize_model
+    sequelizeSchema,
+    // !end
+    merge(
+      // !<DEFAULT> code: sequelize_options
+      {
+        hooks: {
+          beforeCount(options: any) {
+            options.raw = true;
+          },
+        } as any,
+      },
+      // !end
+      // !code: sequelize_define // !end
+    )
+  );
 
-  const existingModel = mongooseClient.models.role; // needed for client/server tests
-  const returns = existingModel || mongooseClient.model('role', role);
+  // tslint:disable-next-line:no-unused-variable
+  role.associate = function (models) {
+    // Define associations here for foreign keys
+    //   - No foreign keys defined.
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
+    // !code: sequelize_associations // !end
+  };
 
-  // !code: mongoose_func_return // !end
-  return returns;
+  // !code: sequelize_func_return // !end
+  return role;
 };
-// !code: mongoose_more // !end
+// !code: sequelize_more // !end
 
-// !code: mongoose_exports // !end
+// !code: sequelize_exports // !end
 export default moduleExports;
 
-// !code: mongoose_funcs // !end
-// !code: mongoose_end // !end
+// !code: sequelize_funcs // !end
+// !code: sequelize_end // !end

@@ -1,20 +1,21 @@
 
 // Initializes the `user` service on path `/user`. (Can be re-generated.)
-import createService from 'feathers-mongoose';
+import { App } from '../../app.interface';
+
+import createService from 'feathers-sequelize';
 import createModel from '../../models/user.model';
 import hooks from './user.hooks';
-import { App } from '../../app.interface';
 // !code: imports // !end
 // !code: init // !end
 
-const moduleExports = function (app: App) {
-  const Model = createModel(app);
-  // const paginate = app.get('paginate');
+let moduleExports = function (app: App) {
+  let Model = createModel(app);
+  let paginate = app.get('paginate');
   // !code: func_init // !end
 
-  const options = {
+  let options = {
     Model,
-    // paginate,
+    paginate,
     // !code: options_more // !end
   };
   // !code: options_change // !end
