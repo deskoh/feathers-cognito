@@ -8,7 +8,7 @@ Ensure that the required OAuth Scopes are allowed in the Cognito User Pool App c
 
 ## Environment variables
 
-Cognito configuration is specified in `config/default.json`.
+Cognito configuration is specified in `config/default.json` or `config/production.json`.
 
 ```json
 "cognito": {
@@ -30,12 +30,13 @@ Cognito configuration is specified in `config/default.json`.
 The following configurations needs to be configured using environment variables.
 
 
-| Variable          | Example Value                                                      |
-|-------------------|--------------------------------------------------------------------|
-| COGNITO_AUTH_URL  | https://xxx.auth.ap-southeast-1.amazoncognito.com/oauth2/authorize |
-| COGNITO_CLIENTID  | app_client_id                                                      |
-| COGNITO_TOKEN_URL | https://xxx.auth.ap-southeast-1.amazoncognito.com/oauth2/token     |
-| COGNITO_USER_URL  | https://xxx.auth.ap-southeast-1.amazoncognito.com/oauth2/userInfo  |
+| Variable             | Example Value                                                      |
+|----------------------|--------------------------------------------------------------------|
+| COGNITO_AUTH_URL     | https://xxx.auth.ap-southeast-1.amazoncognito.com/oauth2/authorize |
+| COGNITO_CALLBACK_URL | http://hostname/auth/cognito/callback                              |
+| COGNITO_CLIENTID     | app_client_id                                                      |
+| COGNITO_TOKEN_URL    | https://xxx.auth.ap-southeast-1.amazoncognito.com/oauth2/token     |
+| COGNITO_USER_URL     | https://xxx.auth.ap-southeast-1.amazoncognito.com/oauth2/userInfo  |
 
 Alternatively, a `local.json` file can be created to override `default.json`.
 

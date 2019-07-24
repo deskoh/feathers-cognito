@@ -1,5 +1,29 @@
 {
   "host": "HOST",
   "port": "PORT",
-  "mongodb": "MONGODB_URL"
+  "mongodb": "MONGODB_URL",
+  "postgres": {
+    "dialectOptions": {
+      "ssl": true
+    },
+    "username": "PG_USER",
+    "password": "PG_PASSWORD",
+    "database": "PG_DB",
+    "host": "PG_HOST"
+  },
+  "authentication": {
+    "cognito": {
+      "authorizationURL": "COGNITO_AUTH_URL",
+      "callbackURL": "COGNITO_CALLBACK_URL",
+      "clientID": "COGNITO_CLIENTID",
+      "clientSecret": "COGNITO_CLIENT_SECRET",
+      "tokenURL": "COGNITO_TOKEN_URL",
+      "userProfileURL": "COGNITO_USER_URL",
+      "scope": [
+        "openid",
+        "profile",
+        "email"
+      ]
+    }
+  }
 }

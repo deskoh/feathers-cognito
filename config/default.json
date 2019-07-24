@@ -73,7 +73,7 @@
         "profile",
         "email"
       ],
-      "successRedirect": "http://localhost:3030/"
+      "successRedirect": "/"
     }
   },
   "mongodb": "mongodb://localhost:27017/feathers-cognito",

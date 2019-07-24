@@ -1,7 +1,6 @@
 import { Verifier } from '@feathersjs/authentication-oauth2';
 
 import { App } from './app.interface';
-import { User } from './services/user/user.interface';
 
 // const debug = makeDebug('@feathersjs/authentication-oauth2:verify');
 
@@ -31,9 +30,8 @@ class OAuth2Verifier extends Verifier {
     return this.service.create(entity, { oauth: { provider: this.options.name } });
   }
 
-  public _updateEntity(entity: User, data: any) {
-    // const id = entity[this.service.id];
-    const id = entity._id;
+  public _updateEntity(entity: any, data: any) {
+    const id = entity[(this.service as any).id];
     const newData = this.normalizeUserEntity(data);
     return this.service.patch(id, newData, { oauth: { provider: this.options.name } });
   }
