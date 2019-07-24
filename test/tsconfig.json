@@ -1,0 +1,12 @@
+{
+  "extends": "../tsconfig.test",
+  "include": [
+    "../src/typings.d.ts",
+    "**/*.test.ts",
+    "**/*.test.js",
+    "fixtures/**/*.ts"
+  ],
+  "compilerOptions": {
+    "rootDir": "../"
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+  ],
+  "plugins": ["@typescript-eslint"],
+  "settings": {
+    // Settings for eslint-plugin-import resolver
+    "import/resolver": {
+      // Settings for eslint-import-resolver-typescript to resolve TypeScript path mapping.
+      "typescript": {},
+    },
+  },
+  "parserOptions": {
+    // Disabled for now. See typescript-eslint/typescript-eslint/#389.
+    // Options for @typescript-eslint/eslint-plugin
+    //"project": "./tsconfig.json"
+  },
+  "rules": {
+    // Override rules if required to follow `airbnb`
+    "@typescript-eslint/indent": ["error", 2, {
+      "SwitchCase": 1,
+      "VariableDeclarator": 1,
+      "outerIIFEBody": 1,
+      // MemberExpression: null,
+      "FunctionDeclaration": {
+        "parameters": 1,
+        "body": 1
+      },
+      "FunctionExpression": {
+        "parameters": 1,
+        "body": 1
+      },
+      "CallExpression": {
+        "arguments": 1
+      },
+      "ArrayExpression": 1,
+      "ObjectExpression": 1,
+      "ImportDeclaration": 1,
+      "flatTernaryExpressions": false,
+      // list derived from https://github.com/benjamn/ast-types/blob/HEAD/def/jsx.js
+      "ignoredNodes": ["JSXElement", "JSXElement > *", "JSXAttribute", "JSXIdentifier", "JSXNamespacedName", "JSXMemberExpression", "JSXSpreadAttribute", "JSXExpressionContainer", "JSXOpeningElement", "JSXClosingElement", "JSXText", "JSXEmptyExpression", "JSXSpreadChild"],
+      "ignoreComments": false
+    }],
+    "@typescript-eslint/no-unused-vars": ["error", { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }],
+    "@typescript-eslint/no-use-before-define": ["error", { "functions": true, "classes": true, "variables": true }],
+
+    // Replace remaining `airbnb` rules by `typescript-eslint` equivalent if available
+    "no-useless-constructor": "off",
+    "@typescript-eslint/no-useless-constructor": "warn",
+
+    // Project customizations
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "func-names": "off",
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }],
+    "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["context"] }],
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "extends": [
+        // Disable ESLint rules `airbnb-base` checked by `tsc`.
+        "plugin:@typescript-eslint/eslint-recommended",
+      ],
+      "rules": {
+        // TypeScript's `noFallthroughCasesInSwitch` option is more robust
+        // See https://github.com/facebook/create-react-app/issues/6906
+        "default-case": "off",
+      }
+    },
+    {
+      "files":["test/**/*.*"],
+      "env":{
+        "mocha": true
+      },
+      "extends": [
+      ],
+      "parserOptions": {
+        // Disabled for now. See typescript-eslint/typescript-eslint/#389.
+        //"project": "./tsconfig.test.json"
+      },
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-use-before-define": "off",
+        "global-require": "off",
+        "import/no-dynamic-require": "off",
+        "no-console": "off",
+        "no-underscore-dangle": "off"
+      }
+    }
+  ]
+}

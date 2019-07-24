@@ -1,0 +1,18 @@
+{
+  "authentication": {
+    "strategies": [
+      "anonymous",
+      "local",
+      "jwt"
+    ],
+    "anonymous": {
+      "userService": "user",
+      "user": {
+        "_id": "5ca5dea3f44ac605c82bbb6c",
+        "name": "test",
+        "password": "test",
+        "anonymous": true
+      }
+    }
+  }
+}

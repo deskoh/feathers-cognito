@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig",
+  "include": [
+    "../src/typings.d.ts",
+    "**/*.ts",
+  ],
+  "compilerOptions": {
+    "rootDir": "../"
+  }
+}

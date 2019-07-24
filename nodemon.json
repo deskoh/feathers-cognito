@@ -1,0 +1,12 @@
+{
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "watch": [
+    "tsconfig.json",
+    "src/**/*.ts"
+  ],
+  "execMap": {
+    "ts": "./node_modules/.bin/ts-node -r tsconfig-paths/register --files"
+  }
+}

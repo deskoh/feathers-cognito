@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig",
+  "include": [
+    "src/typings.d.ts",
+  ],
+  "compilerOptions": {
+    "inlineSourceMap": true,
+    "sourceMap": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": false,
+    /* Module Resolution Options */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@test/*": [
+        "test/*"
+      ]
+    }
+  }
+}

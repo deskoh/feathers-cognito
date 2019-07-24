@@ -1,0 +1,88 @@
+<html>
+
+<head>
+  <title>Test</title>
+</head>
+
+<body>
+  <script src="feathers.js"></script>
+  <script src="socket.io.js"></script>
+  <script>
+    // Socket.io is exposed as the `io` global.
+    const socket = io('/', { transports: ['websocket'] });
+    // feathers-client is exposed as the `feathers` global.
+    feathersClient = feathers()
+      .configure(feathers.socketio(socket))
+      .configure(feathers.authentication({
+        storage: window.localStorage
+      }));
+
+    feathersClient.service('notification').on('created', (notification) => {
+      console.log(notification, ' notification created');
+    });
+
+    feathersClient.authenticate({ strategy: 'local', _id: 'admin', password: 'password' })
+      .then(async response => {
+        console.info('Feathers Client has Authenticated with the JWT access token!');
+        console.log(response);
+
+        const payload = await feathersClient.passport.verifyJWT(response.accessToken);
+        const user = await feathersClient.service('user').get(payload.userId);
+        feathersClient.set('user', user);
+        console.log(user);
+        document.getElementById('noti-user').value = user._id;
+
+        // feathersClient.service('message').create({
+        //   name
+        // });
+      })
+      .catch(error => {
+        // Clear outdated jwt?
+        // window.localStorage.clear();
+        console.info('We have not logged in with OAuth, yet.');
+        console.log(error);
+      });
+
+      function logout() {
+        feathersClient.logout().then(() => console.log('logged out'));
+      }
+
+      async function createNotification() {
+        const targetUsers = [document.getElementById('noti-user').value];
+        let sourceWorkspace = document.getElementById('noti-ws').value;
+        if (sourceWorkspace === '') sourceWorkspace = undefined;
+
+        let sourceApp = document.getElementById('noti-app').value;
+        if (sourceApp === '') sourceApp = undefined;
+
+        const title = document.getElementById('noti-title').value;
+        const content = document.getElementById('noti-content').value;
+        const acknowledged = document.getElementsByName('noti-type')[0].checked? undefined : false;
+
+        const result = await feathersClient.service('_notification').create({
+          sourceWorkspace,
+          sourceApp,
+          title,
+          content,
+          acknowledged,
+          targetUsers,
+        });
+        console.log(result);
+      }
+  </script>
+</body>
+<form>
+  <fieldset>
+    <legend>Notification:</legend>
+    Target User ID: <input id="noti-user" type="text" /><br />
+    Title: <input id="noti-title" type="text" value="Test Title" /><br />
+    Content: <input id="noti-content" type="text" value="Test Content" /><br />
+    Source Workspace ID: <input id="noti-ws" type="text" /><br />
+    Source App: <input id="noti-app" type="text" value="My App" /><br />
+    Type:
+    <input type="radio" name="noti-type" value="blue" checked>Blue
+    <input type="radio" name="noti-type" value="red">Red
+  </fieldset>
+  <button type="button" onclick="createNotification()">Create Notification</button>
+</form>
+</html>

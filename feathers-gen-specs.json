@@ -1,0 +1,68 @@
+{
+  "options": {
+    "ver": "1.0.0",
+    "inspectConflicts": false,
+    "semicolons": true,
+    "freeze": [
+    ],
+    "ts": true
+  },
+  "app": {
+    "environmentsAllowingSeedData": "test",
+    "seedData": false,
+    "name": "feathers-starter-ts",
+    "description": "Feathers Cognito",
+    "src": "src",
+    "packager": "npm@>= 3.0.0",
+    "providers": [
+      "rest",
+      "socketio"
+    ]
+  },
+  "services": {
+    "role": {
+      "name": "role",
+      "nameSingular": "role",
+      "subFolder": "",
+      "fileName": "role",
+      "adapter": "mongoose",
+      "path": "/role",
+      "isAuthEntity": false,
+      "requiresAuth": false,
+      "graphql": false
+    },
+    "user": {
+      "name": "user",
+      "nameSingular": "user",
+      "subFolder": "",
+      "fileName": "user",
+      "adapter": "mongoose",
+      "path": "/user",
+      "isAuthEntity": true,
+      "requiresAuth": true,
+      "graphql": false
+    }
+  },
+  "hooks": {
+    "current-user": {
+      "fileName": "current-user",
+      "camelName": "currentUser",
+      "ifMulti": "n",
+      "multiServices": [],
+      "singleService": "user"
+    }
+  },
+  "authentication": {
+    "strategies": [
+      "local"
+    ],
+    "entity": "user"
+  },
+  "connections": {
+    "mongoose": {
+      "database": "mongodb",
+      "adapter": "mongoose",
+      "connectionString": "mongodb://mongoadmin:mongopass@mongodb.ac:27017/feathers?authSource=admin"
+    }
+  }
+}

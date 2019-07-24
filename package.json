@@ -1,0 +1,132 @@
+{
+  "name": "webserver",
+  "version": "0.1.0",
+  "main": "src",
+  "bugs": {},
+  "directories": {
+    "lib": "src",
+    "test": "test/"
+  },
+  "engines": {
+    "node": "^8.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.{ts,js}"
+    ],
+    "extension": [
+      ".ts",
+      ".js"
+    ],
+    "exclude": [
+      "**/*.d.ts"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": "eslint"
+  },
+  "scripts": {
+    "coverage": "nyc --extension .ts npm run mocha",
+    "test": "npm run eslint && npm run mocha",
+    "test:all": "npm run eslint && cross-env NODE_ENV=test npm run mocha",
+    "dev": "nodemon src/index.ts",
+    "start": "node dist",
+    "start:ts": "ts-node -r tsconfig-paths/register --files src/",
+    "start:seed": "cross-env NODE_ENV=test ts-node --files src/ --seed",
+    "mocha": "cross-env NODE_ENV=test TS_NODE_PROJECT=tsconfig.test.json TS_NODE_FILES=true mocha -r ts-node/register -r tsconfig-paths/register \"test/**/*.test.{ts,js}\" --timeout 10000 --exit",
+    "build": "tsc -p tsconfig.json",
+    "eslint": "eslint --ext ts .",
+    "clean": "shx rm -rf dist && shx rm -f package-lock.json && npm cache clean -f && shx rm -rf node_modules",
+    "rebuild": "npm run clean && npm i"
+  },
+  "dependencies": {
+    "@feathers-plus/test-utils": "^0.3.6",
+    "@feathersjs/authentication": "^2.1.16",
+    "@feathersjs/authentication-jwt": "^2.0.10",
+    "@feathersjs/authentication-local": "^1.2.9",
+    "@feathersjs/authentication-oauth2": "^1.3.1",
+    "@feathersjs/configuration": "^2.0.6",
+    "@feathersjs/errors": "^3.3.6",
+    "@feathersjs/express": "^1.3.1",
+    "@feathersjs/feathers": "^3.3.1",
+    "@feathersjs/socketio": "^3.2.9",
+    "compression": "^1.7.3",
+    "cors": "^2.8.5",
+    "cross-env": "^5.2.0",
+    "feathers-authentication-hooks": "^0.3.1",
+    "feathers-hooks-common": "^4.20.7",
+    "feathers-mongoose": "^7.3.2",
+    "feathers-sync": "^1.1.2",
+    "helmet": "^3.19.0",
+    "lodash.merge": "^4.6.2",
+    "mongodb-core": "^3.2.7",
+    "mongoose": "^5.6.5",
+    "passport-custom": "^1.0.5",
+    "passport-oauth2": "^1.5.0",
+    "request": "^2.88.0",
+    "serve-favicon": "^2.5.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^3.10.0",
+    "xmlhttprequest-ssl": "1.5.5"
+  },
+  "devDependencies": {
+    "@feathersjs/client": "^3.7.8",
+    "@types/compression": "0.0.36",
+    "@types/cors": "^2.8.5",
+    "@types/feathersjs__authentication": "^2.1.4",
+    "@types/feathersjs__authentication-jwt": "^1.0.7",
+    "@types/feathersjs__authentication-local": "^1.0.5",
+    "@types/feathersjs__authentication-oauth2": "^1.0.5",
+    "@types/feathersjs__configuration": "^1.0.3",
+    "@types/feathersjs__errors": "^3.3.1",
+    "@types/feathersjs__express": "1.1.6",
+    "@types/feathersjs__feathers": "3.1.5",
+    "@types/feathersjs__socketio": "3.0.7",
+    "@types/helmet": "0.0.43",
+    "@types/lodash.merge": "^4.6.6",
+    "@types/mocha": "^5.2.7",
+    "@types/mongodb": "^3.1.28",
+    "@types/mongoose": "^5.5.9",
+    "@types/passport-oauth2": "^1.4.8",
+    "@types/request": "^2.48.2",
+    "@types/request-promise": "^4.1.44",
+    "@types/serve-favicon": "^2.2.30",
+    "@types/sinon": "^7.0.13",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "axios": "^0.19.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-import-resolver-typescript": "^1.1.1",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.1",
+    "jsonfile": "^5.0.0",
+    "lint-staged": "^9.2.0",
+    "mocha": "^6.2.0",
+    "nodemon": "^1.19.1",
+    "nyc": "^14.1.1",
+    "request-promise": "^4.2.4",
+    "shx": "^0.3.2",
+    "sinon": "^7.3.2",
+    "socket.io-client": "^2.2.0",
+    "source-map-support": "^0.5.12",
+    "ts-mocha": "^6.0.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "tests": {
+    "environmentsAllowingSeedData": [
+      "test"
+    ],
+    "local": {
+      "password": "password"
+    },
+    "client": {
+      "port": 3030,
+      "ioOptions": {
+        "transports": [
+          "websocket"
+        ],
+        "forceNew": true,
+        "reconnection": false,
+        "extraHeaders": {}
+      },
+      "primusOptions": {
+        "transformer": "ws"
+      },
+      "restOptions": {
+        "url": "http://localhost:3030"
+      },
+      "overriddenAuth": {}
+    }
+  },
+  "authentication": {
+    "secret": "8abad168feae3e941b291d9c915e27aaa9a33948b69116cb15af5663af4915fa35ebc4b2324a428e50521ae653d60a7df71a58164331467de07f84455a7499a8241fe146bc77f3074bfe05bb811e6433ba62b77ea2d477a1bf2bacaf9bac4fdbae99b572639d2792dd663b7f42ca3d198c73203361cd6561bc78acbecc04f0f82eff7298d489f6e74400e4770cd23bf69aca81ad6c3eef6865ae19cbf1dcd3e70e9ae1c61f166280f72b8b68aa67e45fb575bb1cae76af211d49f1017617d4bef0229140faa0f0aa159c53269f7277f676b4dd376768f31358e5b56b596c911652c5bf2f62c5e46c87b4bc4c4f75a3185726856f579b88eb47e8d425b2bb9f41",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "user",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "cookie": {
+      "enabled": true,
+      "name": "feathers-jwt",
+      "httpOnly": false,
+      "secure": false
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "_id",
+      "passwordField": "password"
+    },
+    "cognito": {
+      "clientID": "COGNITO_CLIENTID",
+      "clientSecret": "COGNITO_CLIENT_SECRET",
+      "clientDomain": "COGNITO_DOMAIN",
+      "callbackURL": "COGNITO_CALLBACK_URL",
+      "successRedirect": "COGNITO_SUCCESS_REDIRECT",
+      "region": "COGNITO_REGION"
+    }
+  },
+  "mongodb": "mongodb://localhost:27017/feathers-cognito",
+  "sync": {
+    "uri": "redis://localhost:6379"
+  },
+  "arcgisServer": "http://arcgisserver.web.saf.sg/arcgis/rest/services/NDP19/"
+}

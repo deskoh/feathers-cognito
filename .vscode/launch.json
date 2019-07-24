@@ -1,0 +1,116 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Server",
+      "env": {
+        "NODE_ENV": "development",
+        "TS_NODE_FILES": "true"
+      },
+      "runtimeArgs": [
+          "-r",
+          "ts-node/register",
+          "-r",
+          "tsconfig-paths/register"
+      ],
+      "args": [
+          "${workspaceFolder}/src/index.ts"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Server (Watch)",
+      "program": "${workspaceFolder}/node_modules/nodemon/bin/nodemon",
+      "args": [
+          "src/index.ts"
+      ],
+      "restart": true,
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Test",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "env": {
+        "NODE_ENV": "test",
+        "TS_NODE_PROJECT": "tsconfig.test.json",
+        "TS_NODE_FILES": "true"
+      },
+      "args": [
+          "-r",
+          "ts-node/register",
+          "-r",
+          "tsconfig-paths/register",
+          "--timeout",
+          "999999",
+          "--colors",
+          "${workspaceFolder}/test/**/*test.{ts,js}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current Test",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "env": {
+        "NODE_ENV": "test",
+        "TS_NODE_PROJECT": "tsconfig.test.json",
+        "TS_NODE_FILES": "true"
+      },
+      "args": [
+          "-r",
+          "ts-node/register",
+          "-r",
+          "tsconfig-paths/register",
+          "--timeout",
+          "999999",
+          "--colors",
+          "${file}"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Current File",
+      "env": {
+        "TS_NODE_FILES": "true"
+      },
+      "runtimeArgs": [
+          "-r",
+          "ts-node/register",
+      ],
+      "args": [
+          "${file}"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Seed",
+      "env": {
+        "NODE_ENV": "test",
+        "TS_NODE_FILES": "true"
+      },
+      "runtimeArgs": [
+          "-r",
+          "ts-node/register",
+      ],
+      "args": [
+          "${workspaceFolder}/src/index.ts",
+          "--seed"
+      ]
+    },
+  ]
+}

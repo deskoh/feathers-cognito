@@ -1,0 +1,12 @@
+{
+  "host": "appserver.web.saf.sg",
+  "port": "PORT",
+  "mongodb": "MONGODB_URL",
+  "crowdcount": {
+    "pollInterval": 60000,
+    "VAHostName": "http://172.16.17.1:8080",
+    "latestCrowdCountURL": "/C2/mitl-c2/crowdCount/retrieve-latest-crowd-count-details",
+    "crowdCountByTimeURL": "/C2/mitl-c2//crowdCount/retrieve-crowd-count-details-by-time"
+  },
+  "arcgisServer": "http://arcgisserver.web.saf.sg/arcgis/rest/services/NDP19/"
+}

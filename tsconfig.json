@@ -1,0 +1,32 @@
+{
+  "include": [
+    "src/index.ts",
+    "src/typings.d.ts"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "skipLibCheck": true,
+    "target": "es2017",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "lib": [
+      "es2017",
+      "esnext.asynciterable"
+    ],
+    "checkJs": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    /* Module Resolution Options */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@test/*": [
+        "test/*"
+      ]
+    }
+  }
+}
