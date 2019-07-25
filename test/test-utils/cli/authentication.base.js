@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 const assert = require('assert');
 const { cwd } = require('process');
@@ -11,10 +12,11 @@ const makeClient = require('../make-client');
 
 const defaultRoles = require('../../../seeds/roles').default;
 
-// Note: Should match anonymous user in JSON configuration
+// Note: Should match anonymous user in JSON configuration and user schema.
 const testUser = {
-  _id: '5ca5dea3f44ac605c82bbb6c',
+  _id: '000000000000000009991234',
   name: 'test',
+  email: 'test@test.local',
   password: 'orprotroiyotrtouuikj',
 };
 

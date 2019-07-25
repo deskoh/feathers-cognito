@@ -16,7 +16,7 @@ export interface UserBase {
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface User extends UserBase {
   // !code: more
-  _id: string;
+  id: number;
   /**
    * Role names after join.
    */

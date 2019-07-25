@@ -8,16 +8,6 @@ const isProduction = process.env.NODE_ENV === 'production';
 const productionLogLevel = process.env.LOGLEVEL || 'info';
 // To see more detailed errors, change this to debug'
 const LogLevel = 'verbose';
-
-const errorStackFormat = format((info: any) => {
-  if (info instanceof Error) {
-    return Object.assign({}, info, {
-      stack: info.stack,
-      message: info.message,
-    });
-  }
-  return info;
-});
 // !end
 
 /**

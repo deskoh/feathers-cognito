@@ -8,8 +8,9 @@
     "anonymous": {
       "userService": "user",
       "user": {
-        "_id": "5ca5dea3f44ac605c82bbb6c",
+        "_id": "000000000000000009991234",
         "name": "test",
+        "email": "test@test.local",
         "password": "test",
         "anonymous": true
       }

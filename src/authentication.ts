@@ -4,13 +4,13 @@ import authentication from '@feathersjs/authentication';
 import oauth2 from '@feathersjs/authentication-oauth2';
 import jwt from '@feathersjs/authentication-jwt';
 import local from '@feathersjs/authentication-local';
-import { HookContext } from '@feathersjs/feathers';
 
 import { App } from './app.interface';
 // !code: imports
 import IdServerStrategy from './IdServerStrategy';
 import anonymous from './anonymous';
 import Verifier from './cognitoVerifier';
+import jwtHook from './services/user/hooks/jwt';
 // !end
 // !code: init // !end
 
@@ -43,11 +43,12 @@ const moduleExports = function (app: App) {
         // !code: before_create
         authentication.hooks.authenticate(config.strategies),
         // Add user payload to JWT.
-        (context: HookContext) => {
-          // make sure params.payload exists
-          context.params.payload = context.params.payload || {};
-          Object.assign(context.params.payload, { user: context.params.user });
-        },
+        // (context: HookContext) => {
+        //   // make sure params.payload exists
+        //   context.params.payload = context.params.payload || {};
+        //   Object.assign(context.params.payload, { user: context.params.user });
+        // },
+        jwtHook('email', 'roles'),
         // !end
       ],
       remove: [
