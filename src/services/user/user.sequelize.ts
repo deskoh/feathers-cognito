@@ -12,10 +12,9 @@ import { DataTypes } from 'sequelize';
 const moduleExports = merge(
   {},
   // !code: sequelize_model
-  // eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
   {
     cognitoId: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(40),
     },
     name: {
       type: DataTypes.STRING,
@@ -25,9 +24,6 @@ const moduleExports = merge(
     },
     password: {
       type: DataTypes.STRING,
-    },
-    roleIds: {
-      type: DataTypes.JSONB,
     },
   },
   // !end

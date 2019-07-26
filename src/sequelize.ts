@@ -3,6 +3,7 @@
 import { Sequelize, Op } from 'sequelize';
 import merge from 'lodash.merge';
 import { App } from './app.interface';
+import logger from './logger';
 
 // !code: imports // !end
 // !code: init // !end
@@ -75,8 +76,16 @@ export default function (app: App) {
       }
     });
 
-    // Sync to the database
-    sequelize.sync();
+    sequelize.authenticate().then(() => {
+      logger.info('Connection has been established successfully.');
+      // Clear tables if force is true
+      return sequelize.sync(/* { force: true } */);
+      // Sync to the database
+    })
+      .catch((err: Error) => {
+        logger.error('Unable to connect to the database:', err);
+        process.exit(1);
+      });
 
     // !code: func_return // !end
     return result;

@@ -21,7 +21,9 @@ const schema = {
   ],
   // Fields with unique values.
   uniqueItemProperties: [
-    // !code: schema_unique // !end
+    // !code: schema_unique
+    'name',
+    // !end
   ],
 
   // Fields in the model.

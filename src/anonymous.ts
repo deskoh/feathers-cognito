@@ -1,7 +1,9 @@
 import Strategy from 'passport-custom';
 
+import { User } from './services/user/user.interface';
+
 export default (opts: any) => function anonymous(this: any) {
-  const verifier = async (req: any, done: any) => {
+  const verifier = async (_req: any, done: any) => {
     try {
       const userService = this.service(opts.userService);
       const users = await userService.find({
@@ -10,14 +12,15 @@ export default (opts: any) => function anonymous(this: any) {
         query: { email: opts.user.email },
       });
 
-      let user = users.data ? users.data[0] : users[0];
+      // Check for pagination.
+      let user: User = users.data ? users.data[0] : users[0];
       if (user === undefined) {
         user = await this.service(opts.userService).create(opts.user);
       }
 
       // authenticate the request with this user
       return done(null, user, {
-        userId: user.id || user._id,
+        userId: user.id,
       });
     } catch (error) {
       return done(error);

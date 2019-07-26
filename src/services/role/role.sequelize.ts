@@ -17,6 +17,7 @@ const moduleExports = merge(
     },
     name: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
   },

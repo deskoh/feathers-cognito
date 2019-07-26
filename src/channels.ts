@@ -18,7 +18,7 @@ export default function (app: App) {
     app.channel(ChannelGroup.ANONYMOUS).join(connection);
   });
 
-  app.on('login', (authResult: any, { connection }: any) => {
+  app.on('login', (_authResult: any, { connection }: any) => {
     // connection can be undefined if there is no
     // real-time connection, e.g. when logging in via REST
     if (connection) {
@@ -31,7 +31,7 @@ export default function (app: App) {
     }
   });
 
-  app.on('logout', (authResult: any, { connection }: any) => {
+  app.on('logout', (_authResult: any, { connection }: any) => {
     if (connection) {
       // Leave all channels before joining anonymous channel.
       app.channel(app.channels).leave(connection);

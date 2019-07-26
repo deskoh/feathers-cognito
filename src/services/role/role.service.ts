@@ -1,19 +1,19 @@
 
 // Initializes the `role` service on path `/role`. (Can be re-generated.)
-import { App } from '../../app.interface';
-
 import createService from 'feathers-sequelize';
-import createModel from '../../models/role.model';
+
+import { App } from '@/app.interface';
+import createModel from '@/models/role.model';
 import hooks from './role.hooks';
 // !code: imports // !end
 // !code: init // !end
 
-let moduleExports = function (app: App) {
-  let Model = createModel(app);
-  let paginate = app.get('paginate');
+const moduleExports = function (app: App) {
+  const Model = createModel(app);
+  const paginate = app.get('paginate');
   // !code: func_init // !end
 
-  let options = {
+  const options = {
     Model,
     paginate,
     // !code: options_more // !end

@@ -9,7 +9,9 @@ import { App } from '../app.interface';
 // !<DEFAULT> code: sequelize_schema
 import sequelizeSchema from '../services/role/role.sequelize';
 // !end
-// !code: sequelize_imports // !end
+// !code: sequelize_imports
+import { RoleModel } from './sequelize';
+// !end
 // !code: sequelize_init // !end
 
 const moduleExports = function (app: App) {
@@ -32,13 +34,12 @@ const moduleExports = function (app: App) {
       },
       // !end
       // !code: sequelize_define // !end
-    ));
+    )) as RoleModel;
 
-  (role as any).associate = function (/* models: any */) {
-    // Define associations here for foreign keys
-    //   - No foreign keys defined.
-    // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    // !code: sequelize_associations // !end
+  (role as any).associate = function (models: any) {
+    // !code: sequelize_associations
+    role.belongsToMany(models.user, { through: 'UserRole' });
+    // !end
   };
 
   // !code: sequelize_func_return // !end

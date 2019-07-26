@@ -4,20 +4,27 @@
     "src/typings.d.ts"
   ],
   "compilerOptions": {
-    "allowJs": true,
-    "skipLibCheck": true,
     "target": "es2017",
     "module": "commonjs",
-    "esModuleInterop": true,
     "lib": [
       "es2017",
       "esnext.asynciterable"
     ],
+    "allowJs": true,
     "checkJs": false,
     "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./src",
+
+    /* Strict Type-Checking Options */
     "strict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
     /* Module Resolution Options */
     "baseUrl": ".",
     "paths": {
@@ -27,6 +34,7 @@
       "@test/*": [
         "test/*"
       ]
-    }
+    },
+    "esModuleInterop": true,
   }
 }

@@ -4,15 +4,15 @@ import { App } from './app.interface';
 
 // const debug = makeDebug('@feathersjs/authentication-oauth2:verify');
 
-interface CognitoProfile {
-  id?: string;
-  sub: string;
-  email_verified: boolean;
-  phone_number_verified: boolean;
-  phone_number: string;
-  email: string;
-  username: string;
-}
+// interface CognitoProfile {
+//   id?: string;
+//   sub: string;
+//   email_verified: boolean;
+//   phone_number_verified: boolean;
+//   phone_number: string;
+//   email: string;
+//   username: string;
+// }
 
 class OAuth2Verifier extends Verifier {
   public constructor(app: App, options: any = {}) {
@@ -48,6 +48,14 @@ class OAuth2Verifier extends Verifier {
   }
 
   // Parent class: @feathersjs\authentication-oauth2\lib\verifier.js
+
+  // public verify(
+  //   req: any, accessToken: string, refreshToken: string, profile: any, params: any, done: any,
+  // ) {
+  //   // Decode JWT
+  //   const cognitoProfile = params.id_token;
+  //   super.verify(req, accessToken, refreshToken, cognitoProfile, params, done);
+  // }
   /*
   public verify(req: any, accessToken: string, refreshToken: string, profile: any, done: any) {
     // debug('Checking credentials');

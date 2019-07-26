@@ -9,6 +9,7 @@ import { App } from '@/app.interface';
 // for more of what you can do here.
 // !<DEFAULT> code: sequelize_schema
 import sequelizeSchema from '../services/user/user.sequelize';
+import { UserModel } from './sequelize';
 // !end
 // !code: sequelize_imports // !end
 // !code: sequelize_init // !end
@@ -33,13 +34,12 @@ const moduleExports = function (app: App) {
       },
       // !end
       // !code: sequelize_define // !end
-    ));
+    )) as UserModel;
 
-  (user as any).associate = function (/* models: any */) {
-    // Define associations here for foreign keys
-    //   - No foreign keys defined.
-    // See http://docs.sequelizejs.com/en/latest/docs/associations/
-    // !code: sequelize_associations // !end
+  (user as any).associate = function (models: any) {
+    // !code: sequelize_associations
+    user.belongsToMany(models.role, { through: 'UserRole' });
+    // !end
   };
 
   // !code: sequelize_func_return // !end
