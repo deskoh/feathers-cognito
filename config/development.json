@@ -1,10 +1,20 @@
 {
+  "mockCognito": {
+    "sub": "mockCognito-test3@cognito.com",
+    "email": "test3@cognito.com"
+  },
   "authentication": {
     "strategies": [
       "anonymous",
       "local",
       "jwt"
     ],
+    "cognito": {
+      "authorizationURL": "http://localhost:3030/mockCognito/oauth2/authorize",
+      "callbackURL": "http://localhost:3030/auth/cognito/callback",
+      "tokenURL": "http://localhost:3030/mockCognito/oauth2/token",
+      "userProfileURL": "http://localhost:3030/mockCognito/oauth2/userInfo"
+    },
     "anonymous": {
       "userService": "user",
       "user": {

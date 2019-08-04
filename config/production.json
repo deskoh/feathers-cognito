@@ -11,6 +11,7 @@
     "database": "PG_DB",
     "host": "PG_HOST"
   },
+  "mockCognito": false,
   "authentication": {
     "cognito": {
       "authorizationURL": "COGNITO_AUTH_URL",

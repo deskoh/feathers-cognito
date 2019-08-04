@@ -53,3 +53,7 @@ npm run dev
 
 # feathers-jwt cookie will be created.
 ```
+
+## Mock Cognito
+
+In development mode (i.e. `NODE_ENV=development`), mock Cognito endpoints at base URL `/mockCognito` for testing without actual Cognito service. The `mockCognito` field `development.json` specifies the user profile returned by Cognito user profile endpoint.
