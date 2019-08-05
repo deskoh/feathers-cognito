@@ -21,7 +21,7 @@ function Strategy(this: any, options: any = {}, verify: any) {
 util.inherits(Strategy, OAuth2Strategy);
 
 Strategy.prototype.userProfile = function userProfile(accessToken: any, done: any) {
-  function callback(error: any, response: any, body: any) {
+  const callbackWithGroup = (group: string[]) => function (error: any, response: any, body: any) {
     if (error || response.statusCode !== 200) {
       return done(error);
     }
@@ -29,8 +29,9 @@ Strategy.prototype.userProfile = function userProfile(accessToken: any, done: an
     // @feathersjs/authentication-oauth2 can used.
     // See https://docs.feathersjs.com/api/authentication/oauth2.html#verifier
     const { sub, ...others } = JSON.parse(body);
-    return done(null, { id: sub, ...others });
-  }
+
+    return done(null, { id: sub, group, ...others });
+  };
 
   const options = {
     url: this._userProfileURL,
@@ -40,7 +41,20 @@ Strategy.prototype.userProfile = function userProfile(accessToken: any, done: an
     },
   };
 
-  request(options, callback);
+  if (!/^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$/.test(accessToken)) {
+    done({ error: 'Invalid accessToken format' });
+  }
+  let [, payload] = accessToken.split('.');
+
+  let group: string[] = [];
+  try {
+    payload = JSON.parse(Buffer.from(payload, 'base64').toString('utf8'));
+    group = group.concat(payload['cognito:groups']);
+  } catch (err) {
+    done({ error: 'Error decoding accessToken' });
+  }
+
+  request(options, callbackWithGroup(group));
 };
 
 // Expose constructor.

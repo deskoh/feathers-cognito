@@ -39,6 +39,8 @@ class OAuth2Verifier extends Verifier {
   private normalizeUserEntity(data: any) {
     const user = {
       [this.options.idField as string]: data.profile.id || data.profile.sub,
+      // Get first group user belongs to if exists.
+      group: data.profile.group.length ? data.profile.group[0] : data.profile.group,
       email: data.profile.email,
       accessToken: data.accessToken,
       refreshToken: data.refreshToken,

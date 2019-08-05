@@ -74,6 +74,7 @@
     "feathers-sequelize": "^6.0.1",
     "feathers-sync": "^1.1.2",
     "helmet": "^3.19.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash.merge": "^4.6.2",
     "passport-custom": "^1.0.5",
     "passport-oauth2": "^1.5.0",

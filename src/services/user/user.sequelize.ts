@@ -25,6 +25,9 @@ const moduleExports = merge(
     password: {
       type: DataTypes.STRING,
     },
+    group: {
+      type: DataTypes.STRING,
+    },
   },
   // !end
   // !code: moduleExports // !end

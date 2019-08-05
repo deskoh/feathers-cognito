@@ -1,7 +1,10 @@
 {
   "mockCognito": {
     "sub": "mockCognito-test3@cognito.com",
-    "email": "test3@cognito.com"
+    "email": "test3@cognito.com",
+    "cognito:groups": [
+      "mygroup"
+    ]
   },
   "authentication": {
     "strategies": [

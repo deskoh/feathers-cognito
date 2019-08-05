@@ -18,6 +18,7 @@ declare module '@feathers-plus/test-utils';
 declare module 'feathers-authentication-hooks';
 declare module 'feathers-sync';
 declare module 'passport-custom';
+declare module 'jsonwebtoken';
 // !end
 
 // !code: funcs // !end

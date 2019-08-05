@@ -79,7 +79,7 @@ export default function (app: App) {
     sequelize.authenticate().then(() => {
       logger.info('Connection has been established successfully.');
       // Clear tables if force is true
-      return sequelize.sync(/* { force: true } */);
+      return sequelize.sync({ alter: true /* , force: true */ });
       // Sync to the database
     })
       .catch((err: Error) => {

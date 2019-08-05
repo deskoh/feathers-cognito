@@ -29,6 +29,7 @@ const schema = {
     name: { minLength: 3, maxLength: 40, faker: 'name.findName' },
     email: {},
     password: { chance: { hash: { length: 60 } } },
+    group: {},
     roleIds: {
       type: 'array',
       minItems: 1,
